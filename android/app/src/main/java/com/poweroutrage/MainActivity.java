@@ -15,8 +15,8 @@ public class MainActivity extends ReactActivity {
     return "PowerOutrage";
   }
   @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        SplashScreen.show(this, true);
-        super.onCreate(savedInstanceState);
-    }
+  protected void onCreate(Bundle savedInstanceState) {
+    SplashScreen.show(this, true);
+      super.onCreate(null);
+  }
 }
