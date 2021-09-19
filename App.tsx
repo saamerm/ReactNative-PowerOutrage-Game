@@ -8,32 +8,40 @@ import {
   Platform
 } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import HomeScreen from './src/screens/HomeScreen';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import GameScreen from './src/screens/GameScreen';
 
+const Stack = createNativeStackNavigator();
+
+const appTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: '#272727',
+    text: '#272727',
+    border: '#272727',
+  }
+}
 const App = () => {
   useEffect(() => {
     SplashScreen.hide()
   }, [])
   return (
-    <SafeAreaView>
+    <NavigationContainer theme={appTheme}>
       {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
-      <View style={styles.sectionContainer}>
-        <Text style={{color: '#fff'}}> ---Test home screen--- </Text>
-      </View>
-    </SafeAreaView>
+      <Stack.Navigator > 
+          <Stack.Screen name="Home" component={HomeScreen} options={{headerTransparent: true, headerBackTitleVisible: false, headerShadowVisible: false}} />
+          <Stack.Screen name="Game" component={GameScreen} options={{headerTransparent: true,headerBackTitleVisible: false, headerShadowVisible: false}} />
+    </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
 const styles = StyleSheet.create({
   sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+    fontFamily: 'Roboto'
   },
 });
 
